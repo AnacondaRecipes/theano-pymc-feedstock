@@ -30,10 +30,9 @@ requirements:
     - python
     - {{ pin_compatible('numpy') }}
     - scipy >=0.14
-    #- six >=1.9.0
-    #- pygpu >=0.7.0,<0.8
-    #- jax  # [py>=37 and not win]
     - filelock
+    # 2021/10/20: Anaconda disable jax package (for faster optimization) 
+    # until it gets available for all architectures
 
 test:
   imports:
