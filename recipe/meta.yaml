@@ -11,30 +11,36 @@ source:
 
 build:
   number: 0
+  skip: True  # [py<36]
   entry_points:
     - theano-cache = bin.theano_cache:main
   script: {{ PYTHON }} -m pip install . -vv
 
 requirements:
+  build:
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
   host:
     - pip
     - python
-  run:
-    - {{ compiler('c') }}
-    - {{ compiler('cxx') }}
-    - python
     - setuptools
-    - six >=1.9.0
-    - numpy >=1.9.1
+    - wheel
+    - numpy
+  run:
+    - python
+    - {{ pin_compatible('numpy') }}
     - scipy >=0.14
-    - pygpu >=0.7.0,<0.8
-    - jax  # [py>=37 and not win]
     - filelock
+    # 2021/10/20: Anaconda disable jax package (for faster optimization) 
+    # until it gets available for all architectures
 
 test:
   imports:
     - theano
+  requires:
+    - pip
   commands:
+    - pip check
     - theano-cache help
 
 about:
