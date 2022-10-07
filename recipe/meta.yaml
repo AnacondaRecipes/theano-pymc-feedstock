@@ -9,7 +9,7 @@ source:
   sha256: 5da6c2242ea72a991c8446d7fe7d35189ea346ef7d024c890397011114bf10fc
 
 build:
-  number: 0
+  number: 1
   skip: True  # [py<36]
   entry_points:
     - theano-cache = bin.theano_cache:main
@@ -28,7 +28,7 @@ requirements:
   run:
     - python
     - {{ pin_compatible('numpy') }}
-    - scipy >=0.14
+    - scipy >=0.14,<1.8
     - filelock
     # 2021/10/20: Anaconda disable jax package (for faster optimization) 
     # until it gets available for all architectures
