@@ -14,6 +14,10 @@ build:
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
   entry_points:
     - theano-cache = bin.theano_cache:main
+  # ModuleNotFoundError: No module named 'numpy.distutils'
+  # This project is archived by PyPI, but it is still used as a backend for pymc3.
+  # Won`t fix py>311 compatibility issues which appeared in versioneer and cmodule.py.
+  skip: true  # [py>311]
 
 requirements:
   build:
@@ -31,8 +35,6 @@ requirements:
     - numpy >=1.9.1
     - scipy >=0.14
     - filelock
-    # 2021/10/20: Anaconda disable jax package (for faster optimization) 
-    # until it gets available for all architectures
 
 test:
   imports:
