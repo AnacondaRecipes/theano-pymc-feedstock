@@ -10,7 +10,7 @@ source:
   sha256: 5da6c2242ea72a991c8446d7fe7d35189ea346ef7d024c890397011114bf10fc
 
 build:
-  number: 0
+  number: 1
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
   entry_points:
     - theano-cache = bin.theano_cache:main
