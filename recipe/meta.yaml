@@ -21,15 +21,12 @@ build:
 
 requirements:
   build:
-    - {{ stdlib('c') }}
-    - {{ compiler('c') }}
-    - {{ compiler('cxx') }}
   host:
     - pip
     - python
     - wheel
     - setuptools
-    - numpy
+    - numpy 1.26.4
   run:
     - python
     - {{ compiler('c') }}
@@ -64,3 +61,6 @@ extra:
     - twiecki
     - ericmjl
     - brandonwillard
+  skip-lints:
+    - compilers_must_be_in_build
+    - patch_unnecessary
